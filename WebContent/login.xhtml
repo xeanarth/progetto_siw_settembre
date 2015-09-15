@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<h1>LOGIN CLIENTE</h1>
+<f:view>
+    <h:form styleClass="form-inline">
+        <div class="form-group"><strong>Email</strong>: <h:inputText value="#{customerController.email}"
+                                                                     styleClass="form-control"
+                                                                     required="true"
+                                                                     requiredMessage="Email is mandatory" id="email"/> <strong><h:message for="email" /></strong>
+        </div>
+        <div class="form-group"><strong>Password</strong>: <h:inputSecret value="#{customerController.password}"
+                                                                          styleClass="form-control"
+                                                                          required="true"
+                                                                          requiredMessage="Password is mandatory" id="password"/> <strong><h:message for="password" /></strong>
+        </div>
+        <div class="form-group"><h:commandButton value="Effettua Login" styleClass="btn btn-primary" action="#{customerController.customerLogin}" /></div>
+        <div><h:link value="Registrati" outcome="newCustomer" /></div>
+        <div><h:link value="HomePage" outcome="index" /></div>
+
+    </h:form>
+</f:view>
+</body>
+</html>

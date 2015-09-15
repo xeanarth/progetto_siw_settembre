@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<f:view>
+    <h:form>
+        <h1>Inserisci la quantità desiderata</h1>
+        <li><strong>Prodotto</strong>: ${productController.product.name}</li>
+        <li><strong>Quantita</strong>: <h:inputText value="#{orderLineController.quantity}"
+                                       required="true"
+                                       requiredMessage="La quantita' e' obbligatorio"
+                                       id="quantita"/> <h:message for="quantita"/></li>
+
+        <h:commandButton styleClass="btn btn-primary" value="Aggiungi ad ordine"
+                         action="#{orderLineController.createOrderLine(productController.product)}"/>
+    </h:form>
+</f:view>
+</body>
+</html>

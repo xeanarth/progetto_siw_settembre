@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<f:view>
+    <h:form>
+        <h1>Riepilogo ordine:</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome Prodotto   </th>
+                <th>Prezzo Unitario   </th>
+                <th>Quantità   </th>
+                <th>Prezzo   </th>
+            </tr>
+            <ui:repeat value="#{orderController.order.orderLines}" var="orderLine">
+                <tr>
+                    <td><h:commandLink action="#{productController.findProduct(orderLine.product.id)}" value="#{orderLine.product.name}"></h:commandLink></td>
+                    <td>${orderLine.unitPrice}</td>
+                    <td>${orderLine.quantity}</td>
+                    <td>${orderLine.unitPrice * orderLine.quantity}</td>
+                </tr>
+            </ui:repeat>
+        </table>
+        <div>Totale ordine : ${orderController.calculateTotal()}</div>
+        <div>Stato Ordine : ${orderController.order.status}</div>
+        <div><h:commandLink action="#{orderController.orderNull}"
+                     value="HomePage"
+                     rendered="#{customerController.customer!=null and adminController.admin==null}"></h:commandLink></div>
+        <div><h:link value="HomePage"
+                     outcome="homePageAdmin"
+                     rendered="#{customerController.customer==null and adminController.admin!=null}"/></div>
+        <div><h:commandLink action="#{orderController.allOrders}"
+                            value="Lista ordini"
+                            rendered="#{adminController.admin!=null and customerController.customer==null}"></h:commandLink></div>
+    </h:form>
+</f:view>
+</body>
+</html>
